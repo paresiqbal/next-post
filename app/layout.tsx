@@ -8,6 +8,7 @@ const roboto = Roboto({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-roboto",
 });
 
 export const metadata = {
@@ -22,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={`${roboto.variable} mx-4 md:mx-48 lg:mx-96`}>
         <Navbar />
         {children}
       </body>
