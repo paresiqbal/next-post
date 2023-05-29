@@ -4,13 +4,25 @@ import { useState } from "react";
 
 // library
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
 
 export default function AddPost() {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
+  // Create new post
+  const { mutate } = useMutation(
+    async (title: string) => await axios.post("api/posts/addPost", { title })
+  );
+
+  const submitPost = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsDisabled(true);
+    mutate(title);
+  };
+
   return (
-    <form>
+    <form onSubmit={submitPost}>
       <div className="flex my-4">
         <textarea
           name="title"
@@ -31,6 +43,7 @@ export default function AddPost() {
         >{`${title.length}/300`}</p>
         <button
           disabled={isDisabled}
+          type="submit"
           className="text-sm font-semibold bg-teal-500 py-2 px-4 rounded-md disabled:opacity-25"
         >
           Create Post
