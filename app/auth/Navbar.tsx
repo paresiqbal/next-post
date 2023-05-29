@@ -1,8 +1,10 @@
 // next
 import Link from "next/link";
+
+// pages
 import Login from "./Login";
 
-export default function Navbar() {
+export default async function Navbar() {
   return (
     <nav className="flex justify-between items-center py-8">
       <Link href={"/"} className="font-bold text-lg">
