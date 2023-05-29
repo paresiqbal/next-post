@@ -1,6 +1,9 @@
 "use client";
-
+// next
 import { useState } from "react";
+
+// library
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function AddPost() {
   const [title, setTitle] = useState("");
