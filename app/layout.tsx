@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 
 // components
 import Navbar from "./auth/Navbar";
+import QueryWrapper from "./auth/QueryWrapper";
 
 const roboto = Roboto({
   weight: "400",
@@ -24,8 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} mx-4 md:mx-48 lg:mx-96`}>
-        <Navbar />
-        {children}
+        <QueryWrapper>
+          <Navbar />
+          {children}
+        </QueryWrapper>
       </body>
     </html>
   );
