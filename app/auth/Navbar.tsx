@@ -17,7 +17,8 @@ export default async function Navbar() {
         Dashboard
       </Link>
       <ul className="flex items-center gap-6">
-        <Login />
+        {!session?.user && <Login />}
+        {session?.user && <h1>{session.user.name}</h1>}
       </ul>
     </nav>
   );
