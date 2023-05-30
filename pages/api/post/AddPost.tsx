@@ -24,10 +24,14 @@ export default async function handler(
     });
 
     // CHeck title
-    if (title.length > 300)
-      return res.status(403).json({ message: "Please write less then or 300" });
-    if (!title.length)
-      return res.status(403).json({ message: "Message must be not empety" });
+    if (title.length > 300) {
+      return res.status(403).json({ message: "Please write a shorter post" });
+    }
+    if (!title.length) {
+      return res
+        .status(403)
+        .json({ message: "Please write something before we can post it." });
+    }
 
     // Create a post
     try {
