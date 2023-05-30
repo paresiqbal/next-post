@@ -5,6 +5,7 @@ import { useState } from "react";
 // library
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { error } from "console";
 
 export default function AddPost() {
   const [title, setTitle] = useState("");
@@ -12,7 +13,17 @@ export default function AddPost() {
 
   // Create new post
   const { mutate } = useMutation(
-    async (title: string) => await axios.post("api/posts/addPost", { title })
+    async (title: string) => await axios.post("api/posts/addPost", { title }),
+    {
+      onError: (error) => {
+        console.log(error);
+      },
+      onSuccess: (data) => {
+        console.log(data);
+        setTitle("");
+        setIsDisabled(false);
+      },
+    }
   );
 
   const submitPost = async (e: React.FormEvent) => {

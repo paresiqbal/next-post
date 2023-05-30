@@ -26,7 +26,7 @@ export default async function handler(
     // CHeck title
     if (title.length > 300)
       return res.status(403).json({ message: "Please write less then or 300" });
-    if (title.length)
+    if (!title.length)
       return res.status(403).json({ message: "Message must be not empety" });
 
     // Create a post
